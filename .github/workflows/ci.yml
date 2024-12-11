@@ -38,6 +38,8 @@ jobs:
           DATABASE_PASSWORD: password
           DATABASE_NAME: app_test
       - name: "Run PHPStan"
-        run: vendor/bin/phpstan analyse
+        run: |
+          phpenv config-rm xdebug.ini
+          phpstan analyse src tests
       - name: "Run PHPUnit"
         run: php bin/phpunit
